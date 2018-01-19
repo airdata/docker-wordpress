@@ -1,0 +1,15 @@
+echo "Backup WP folder to /html...."
+cp -rp /var/www/html /
+echo "Clean old version files..."
+cd /var/www/html && rm -rf wp-admin wp-includes
+echo "Download && upgrade WP"
+cd /tmp && curl -O https://wordpress.org/latest.tar.gz && tar -zxf latest.tar.gz && rm -rf wordpress/wp-content && mv -f wordpress/* /var/www/html/
+cd /var/www/html
+chown -R www-data:www-data .
+echo "Fixing account permissions..."
+find . -type f -exec chmod 664 {} \;
+find . -type d -exec chmod 775 {} \;
+echo "Clean files..."
+rm -rf /tmp/wordpress && rm -rf /tmp/latest.zip
+find . -name "readme*"  -exec rm -f {} \;
+find . -name "license*"  -exec rm -f {} \;
