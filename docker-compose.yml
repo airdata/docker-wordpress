@@ -2,14 +2,15 @@ version: "3.3"
 services:
     wordpress:
         image: wordpress
+        container_name: wordpress
         ports:
             - 80:80
             - 443:443
         environment:
-            WORDPRESS_DB_USER: "cms"
+            WORDPRESS_DB_USER: "wordpress"
             WORDPRESS_DB_PASSWORD_FILE: "/run/secrets/wp_db_password"
             WORDPRESS_DB_HOST: "mysql:3306"
-            WORDPRESS_DB_NAME: "cms"
+            WORDPRESS_DB_NAME: "wordpress"
         secrets:
             - source: mysql_password
               target: wp_db_password
@@ -23,11 +24,12 @@ services:
 
     mysql:
         image: mysql
+        container_name: mysql
         environment:
             MYSQL_ROOT_PASSWORD_FILE: "/run/secrets/mysql_root_password"
             MYSQL_PASSWORD_FILE: "/run/secrets/mysql_password"
-            MYSQL_USER: "cms"
-            MYSQL_DATABASE: "cms"
+            MYSQL_USER: "wordpress"
+            MYSQL_DATABASE: "wordpress"
         secrets:
             - mysql_root_password
             - mysql_password
