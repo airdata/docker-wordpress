@@ -4,3 +4,4 @@ mysql_data
 mysql
 data
 *.sql
+.idea
