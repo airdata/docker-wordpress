@@ -1,5 +1,5 @@
-FROM nexus.lab:8860/myp-wordpress
-MAINTAINER Rumen LISHKOV "rlishkov@ingimax.com"
+FROM wordpress
+MAINTAINER Rumen LISHKOV "rumenlishkoff@gmail.com"
 
 COPY ./apache2-foreground /usr/local/bin/
 RUN chmod +x /usr/local/bin/apache2-foreground
