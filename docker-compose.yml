@@ -19,9 +19,7 @@ services:
             - mysql
         volumes:
             - ./wordpress_data:/var/www/html
-        deploy:
-            replicas: 1
-
+            - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
     mysql:
         image: mysql
         container_name: mysql
@@ -37,9 +35,6 @@ services:
             - mysql
         volumes:
             - ./mysql_data:/var/lib/mysql
-        deploy:
-            replicas: 1
-
 networks:
     mysql:
 
